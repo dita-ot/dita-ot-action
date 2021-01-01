@@ -35,24 +35,37 @@ A string representing any additional properties to pass into the input. Defaults
 ## Example usage
 
 ```yaml
-uses: jason-fox/dita-build-action@master
-with:
-    dita-ot-version: 3.6
-    setup-script: 'startup.sh'
-    prerequisites: 'org.doctales.xmltask,fox.jason.extend.css,fox.jason.prismjs'
-    ditamap: 'docsrc/document.ditamap'
-    transtypes: 'html5,pdf'
-    properties: '--filter=filter1.ditaval'
-    output-dir: 'out'
+- name: Build HTML and PDF using DITA-OT
+  uses: jason-fox/dita-build-action@master
+  with:
+      dita-ot-version: 3.6
+      setup-script: 'startup.sh'
+      prerequisites: 'org.doctales.xmltask,fox.jason.extend.css,fox.jason.prismjs'
+      ditamap: 'docsrc/document.ditamap'
+      transtypes: 'html5,pdf'
+      properties: '--filter=filter1.ditaval' # Any additional command line properties
+      output-dir: 'out' # The folder the action should write to.
 ```
 
 The artifacts can then be uploaded from your workflow as shown:
 
 ```yaml
-uses: actions/upload-artifact@v2
-with:
-    name: my-artifact
-    path: ~/out
+- name: Upload DITA
+  uses: actions/upload-artifact@v2
+  with:
+      name: dita-artifact
+      path: 'out' # The folder the action should upload.
+```
+
+Or deployed to GitHub Pages as shown:
+
+```yaml
+- name: Deploy to GitHub Pages
+  uses: JamesIves/github-pages-deploy-action@3.7.1
+  with:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    BRANCH: gh-pages # The branch the action should deploy to.
+    FOLDER: out # The folder the action should deploy.
 ```
 
 ## License
