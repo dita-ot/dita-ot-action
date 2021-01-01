@@ -7,9 +7,11 @@ FROM ubuntu:20.04
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends openjdk-11-jre ant curl unzip git locales && \
-    dpkg-reconfigure --frontend noninteractive locales && \
+RUN export DEBIAN_FRONTEND=noninteractive && \
+	apt-get update && \
+    apt-get install -y --no-install-recommends openjdk-11-jre ant curl unzip git locales tzdata && \
+    ln -fs /usr/share/zoneinfo/America/New_York /etc/localtime && \
+    dpkg-reconfigure --frontend noninteractive locales tzdata && \
     locale-gen en_US.UTF-8 && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*

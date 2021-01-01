@@ -43,5 +43,5 @@ transtypeList=$(echo "${TRANSTYPES}" | tr "," "\n")
 for transtype in $transtypeList
 do
 	echo "[INFO] Building ${transtype}"
-	dita -i "${DITAMAP}" -f "${transtype}" -o "${OUTPUT_PATH}"/"${transtype}" "${PROPERTIES}"
+	dita -i "/github/workspace/${DITAMAP}" -f "${transtype}" -o "/github/workspace/${OUTPUT_PATH}"/"${transtype}" "${PROPERTIES}"
 done
