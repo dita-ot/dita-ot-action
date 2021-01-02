@@ -4,48 +4,115 @@ This GitHub Action installs a version of the [DITA Open toolkit](https://www.dit
 
 ## Inputs
 
-### `dita-ot-version`
+### `transtype`
 
-The version of DITA-OT to use. Defaults to `3.6`
+Name of the transform to run. Either `build` or `transtype` is required.
 
-### `prerequisites`
+### `input`
 
-Comma separated list of additional DITA-OT plugins to install prior to installing the plugin under test.
+The location of the topic or ditamap to use to build the output. Defaults to `document.ditamap` if not supplied.
 
-### `setup-script`
+### `output-path`
 
-The name of a bash script to run to install any dependencies prior to running the build. Defaults to `setup.sh` if not supplied.
-
-### `ditamap`
-
-The location of the ditamap to use to build the output. Defaults to `document.ditamap` if not supplied.
-
-### `transtypes`
-
-Comma separated list of transforms to run. Defaults to `pdf` only if not supplied.
+A string representing any additional properties to pass into the input. Defaults to `out` if not supplied.
 
 ### `properties`
 
 A string representing any additional properties to pass into the input.
 
-### `output-dir`
+### `plugins`
 
-A string representing any additional properties to pass into the input. Defaults to `out` if not supplied.
+Comma separated list of additional DITA-OT plugins to install.
 
-## Example usage
+### `install`
+
+The name of a bash script to run to install plugins or any other dependencies prior to running the build. Script-based alternative to `plugins`
+
+### `build`
+
+Explicit command-line input or a bash script to run the DITA-OT Build.  Alternative to `transtype` and `properties`
+
+### `dita-ot-version`
+
+Downloads an explicit version of DITA-OT to use rather than using the default. Defaults to `3.6`
+
+
+## Examples
+
+### Install using `plugins`
 
 ```yaml
-- name: Build HTML and PDF using DITA-OT
+- name: Build HTML5 using DITA-OT
   uses: jason-fox/dita-build-action@master
   with:
-      dita-ot-version: 3.6
-      setup-script: 'startup.sh'
-      prerequisites: 'org.doctales.xmltask,fox.jason.extend.css,fox.jason.prismjs'
-      ditamap: 'docsrc/document.ditamap'
-      transtypes: 'html5,pdf'
-      properties: '--filter=filter1.ditaval' # Any additional command line properties
-      output-dir: 'out' # The folder the action should write to.
+      plugins : |
+        fox.jason.extend.css
+        org.doctales.xmltask
+        fox.jason.prismjs
+      input: document.ditamap
+      transtype: html5
+      output-path: out
 ```
+
+### Install using command line statements
+
+```yaml
+- name: Build HTML5 using DITA-OT
+  uses: jason-fox/dita-build-action@master
+  with:
+      install : |
+        dita install fox.jason.extend.css
+        dita install org.doctales.xmltask
+        dita install fox.jason.prismjs
+      input: document.ditamap
+      transtype: html5
+      output-path: out
+```
+
+### Install using a bash script
+
+```yaml
+- name: Build HTML5 using DITA-OT
+  uses: jason-fox/dita-build-action@master
+  with:
+      install : install.sh # This is a script in the root of the repository
+      input: document.ditamap
+      transtype: html5
+      output-path: out
+```
+
+### Build using command line statements only
+
+```yaml
+- name: Build PDF using DITA-OT commands
+  uses: jason-fox/dita-build-action@master
+  with:
+      install : |
+        dita install fox.jason.extend.css
+        dita install org.doctales.xmltask
+        dita install fox.jason.prismjs
+      build: |
+        dita -i document.ditamap -o out  -f pdf --filter=filter1.ditaval
+```
+
+## Example usage fixed to an explicit DITA-OT version and build properties
+
+```yaml
+- name: Build PDF using DITA-OT 3.5.4
+  uses: jason-fox/dita-build-action@master
+  with:
+      dita-ot-version: 3.5.4
+      plugins: |
+        org.doctales.xmltask
+        fox.jason.extend.css
+        fox.jason.prismjs
+      input: 'docsrc/document.ditamap'
+      transtype: 'pdf'
+      properties: '--filter=filter1.ditaval'
+      output-path: out
+```
+
+## Post-processing
 
 The artifacts can then be uploaded from your workflow as shown:
 

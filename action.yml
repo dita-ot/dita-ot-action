@@ -1,33 +1,34 @@
 name: 'DITA-OT Build Action'
 description: 'Build DITA-OT Artifacts'
 inputs:
-  dita-ot-version:
-    description: 'The version of DITA-OT to use'
+  transtype:
+    description: 'transform to run'
     required: false
-    default: '3.6'
-  prerequisites:
-    description: 'Comma separated list of additional DITA-OT plugins to install.'
-    required: false
-  setup-script:
-    description: 'A bash script to run to install any other runtime dependencies'
-    required: false
-    default: 'setup.sh'
-  ditamap:
+  input:
     description: 'The location of the ditamap to use'
     required: false
     default: 'document.ditamap'
-  transtypes:
-    description: 'Comma separated list of transforms to run'
-    default: 'pdf'
+  output-path:
+    description: 'Location for the DITA-OT build outputs'
+    default: 'out'
     required: false
   properties:
     description: 'Additional properties to input'
     default: ''
     required: false
-  output-dir:
-    description: 'Location for the DITA-OT build outputs'
-    default: 'out'
+  plugins:
+    description: 'Comma separated list of additional DITA-OT plugins to install.'
     required: false
+  install:
+    description: 'Command-line input or a bash script to run to install plugins or any other runtime dependencies'
+    required: false
+  build:
+    description: 'Command-line input or a bash script to run the DITA-OT Build'
+    required: false
+  dita-ot-version:
+    description: 'The version of DITA-OT to use'
+    required: false
+    default: '3.6'
 branding:
   icon: 'book-open'  
   color: 'blue'
@@ -35,10 +36,11 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.dita-ot-version }}
-    - ${{ inputs.prerequisites }}
-    - ${{ inputs.setup-script }}
-    - ${{ inputs.ditamap }}
-    - ${{ inputs.transtypes }}
+    - ${{ inputs.transtype }}
+    - ${{ inputs.input }}
+    - ${{ inputs.output-path }}
     - ${{ inputs.properties }}
-    - ${{ inputs.output-dir }}
+    - ${{ inputs.plugins }}
+    - ${{ inputs.install }}
+    - ${{ inputs.build }}
+    - ${{ inputs.dita-ot-version }}
