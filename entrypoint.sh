@@ -57,7 +57,7 @@ if [ -f "$INSTALL_FILE" ]; then
 elif [ ! -z "${INSTALL_SCRIPT}" ]; then
 	echo "[INFO] Installing using command-line" 
 	echo "${INSTALL_SCRIPT}" >> /install_script.sh
-	exec /install_script.sh
+	val=$(exec /install_script.sh)
 fi	
 
 if [ ! -z "${TRANSTYPE}" ]; then
