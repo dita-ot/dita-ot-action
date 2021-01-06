@@ -43,7 +43,7 @@ fi
 echo "[INFO]" $(dita --version)
 
 if [ ! -z "${PLUGINS}" ]; then 
-	echo "[INFO] Installing prequisite DITA-OT plugins"
+	echo "[INFO] Installing prerequisite DITA-OT plugins"
 	list=$(echo "$PLUGINS" | tr "," "\n")
 	for prereq in $list
 	do
