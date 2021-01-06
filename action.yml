@@ -28,7 +28,6 @@ inputs:
   dita-ot-version:
     description: 'The version of DITA-OT to use'
     required: false
-    default: '3.6'
 branding:
   icon: 'book-open'  
   color: 'blue'
