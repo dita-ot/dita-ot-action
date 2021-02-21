@@ -43,7 +43,7 @@ Downloads an explicit version of DITA-OT to use rather than using the default. D
 
 ```yaml
 - name: Build HTML5 using DITA-OT
-  uses: jason-fox/dita-build-action@master
+  uses: dita-ot/dita-ot-action@master
   with:
       plugins : |
         fox.jason.extend.css
@@ -58,7 +58,7 @@ Downloads an explicit version of DITA-OT to use rather than using the default. D
 
 ```yaml
 - name: Build HTML5 using DITA-OT
-  uses: jason-fox/dita-build-action@master
+  uses: dita-ot/dita-ot-action@master
   with:
       install : |
         dita install fox.jason.extend.css
@@ -73,7 +73,7 @@ Downloads an explicit version of DITA-OT to use rather than using the default. D
 
 ```yaml
 - name: Build HTML5 using DITA-OT
-  uses: jason-fox/dita-build-action@master
+  uses: dita-ot/dita-ot-action@master
   with:
       install : install.sh # This is a script in the root of the repository
       input: document.ditamap
@@ -85,7 +85,7 @@ Downloads an explicit version of DITA-OT to use rather than using the default. D
 
 ```yaml
 - name: Build PDF using DITA-OT commands
-  uses: jason-fox/dita-build-action@master
+  uses: dita-ot/dita-ot-action@master
   with:
       install : |
         dita install fox.jason.extend.css
@@ -99,7 +99,7 @@ Downloads an explicit version of DITA-OT to use rather than using the default. D
 
 ```yaml
 - name: Build PDF using DITA-OT 3.5.4
-  uses: jason-fox/dita-build-action@master
+  uses: dita-ot/dita-ot-action@master
   with:
       dita-ot-version: 3.5.4
       plugins: |
