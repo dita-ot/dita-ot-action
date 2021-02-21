@@ -1,6 +1,6 @@
-# DITA-OT Build GitHub action [<img src="https://www.dita-ot.org/images/dita-ot-logo.svg" align="right" height="55">](https://www.dita-ot.org)
+# GitHub Action for DITA-OT Builds  [<img src="https://www.dita-ot.org/images/dita-ot-logo.svg" align="right" height="55">](https://www.dita-ot.org)
 
-This GitHub Action installs a version of the [DITA Open toolkit](https://www.dita-ot.org) and plus any relevant [DITA-OT plugins](https://www.dita-ot.org/plugins) and then builds a series of outputs such as a PDF document or an HTML static website.
+This GitHub Action installs a version of [DITA Open toolkit](https://www.dita-ot.org) along with any specified [DITA-OT plugins](https://www.dita-ot.org/plugins) and then builds a series of outputs such as a PDF document or an HTML static website.
 
 ## Inputs
 
@@ -22,19 +22,19 @@ A string representing any additional properties to pass into the input.
 
 ### `plugins`
 
-Comma separated list of additional DITA-OT plugins to install.
+Comma-separated list of additional DITA-OT plugins to install.
 
 ### `install`
 
-The name of a bash script to run to install plugins or any other dependencies prior to running the build. Script-based alternative to `plugins`
+The name of a bash script to run to install plugins or any other dependencies prior to running the build. Script-based alternative to `plugins`.
 
 ### `build`
 
-Explicit command-line input or a bash script to run the DITA-OT Build.  Alternative to `transtype` and `properties`
+Explicit command-line input or a bash script to run the DITA-OT build.  Alternative to `transtype` and `properties`.
 
 ### `dita-ot-version`
 
-Downloads an explicit version of DITA-OT to use rather than using the default. Defaults to `3.6`
+Downloads an explicit version of DITA-OT to use rather than using the default. Defaults to `3.6`.
 
 
 ## Examples
