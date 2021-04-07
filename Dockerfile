@@ -15,11 +15,13 @@ COPY script.sh install_script.sh
 COPY script.sh build_script.sh
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
+	apt-get update && \
+	apt-get install --reinstall tzdata && \
 	ln -fs /usr/share/zoneinfo/America/New_York /etc/localtime && \
-    dpkg-reconfigure --frontend noninteractive locales tzdata && \
+	dpkg-reconfigure --frontend noninteractive locales tzdata && \
 	locale-gen en_US.UTF-8 && \
-    rm -rf /var/lib/apt/lists/* && \
-    chmod +x /entrypoint.sh && \
+	rm -rf /var/lib/apt/lists/* && \
+	chmod +x /entrypoint.sh && \
 	chmod +x /build_script.sh  && \
 	chmod +x /install_script.sh
 
