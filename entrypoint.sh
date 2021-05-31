@@ -15,6 +15,7 @@ INSTALL_FILE=/github/workspace/${INSTALL_SCRIPT}
 BUILD_SCRIPT="${7}"
 BUILD_FILE=/github/workspace/${BUILD_SCRIPT}
 DITA_OT_VERSION="${8}"
+PROJECT="${9}"
 
 
 if [ ! -z "${DITA_OT_VERSION}" ]; then 
@@ -63,6 +64,9 @@ fi
 if [ ! -z "${TRANSTYPE}" ]; then
 	echo "[INFO] Running ${TRANSTYPE} build"  
 	dita -i "${INPUT}" -o "${OUTPUT_PATH}/${TRANSTYPE}"  -f "${TRANSTYPE}" "${PROPERTIES}"
+elif [ ! -z "${PROJECT}" ]; then
+	echo "[INFO] Building project ${PROJECT}"
+	dita --project="${PROJECT}"
 elif [ -f "$BUILD_FILE" ]; then
 	echo "[INFO] Running build script"
 	"${BUILD_FILE}"

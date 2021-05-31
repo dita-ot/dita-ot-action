@@ -28,6 +28,9 @@ inputs:
   dita-ot-version:
     description: 'The version of DITA-OT to use'
     required: false
+  project:
+    description: 'The location of the DITA-OT project file to use'
+    required: false
 branding:
   icon: 'book-open'  
   color: 'blue'
@@ -43,3 +46,4 @@ runs:
     - ${{ inputs.install }}
     - ${{ inputs.build }}
     - ${{ inputs.dita-ot-version }}
+    - ${{ inputs.project }}
