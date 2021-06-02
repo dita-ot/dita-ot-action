@@ -6,7 +6,7 @@ This GitHub Action installs a version of [DITA Open toolkit](https://www.dita-ot
 
 ### `transtype`
 
-Name of the transform to run. Either `build` or `transtype` is required.
+Name of the [DITA-OT transform](https://www.dita-ot.org/3.6/topics/output-formats.html) to run. One of `build` , `transtype`  or `project` is required.
 
 ### `input`
 
@@ -14,23 +14,30 @@ The location of the topic or ditamap to use to build the output. Defaults to `do
 
 ### `output-path`
 
-A string representing any additional properties to pass into the input. Defaults to `out` if not supplied.
+Location for the DITA-OT build outputs. Defaults to `out` if not supplied.
 
 ### `properties`
 
-A string representing any additional properties to pass into the input.
+A string representing any [additional parameters](https://www.dita-ot.org/3.6/parameters/parameters_intro.html) to pass into the input.
 
 ### `plugins`
 
-Comma-separated list of additional DITA-OT plugins to install.
+Comma-separated list of additional [DITA-OT plugins](https://www.dita-ot.org/3.6/topics/adding-plugins.html) to install.
 
 ### `install`
 
-The name of a bash script to run to install plugins or any other dependencies prior to running the build. Script-based alternative to `plugins`.
+The name of a bash script to run to [install plugins](https://www.dita-ot.org/3.6/topics/plugins-installing.html) or any other dependencies prior to running the build. Script-based alternative to `plugins`.
+
+### `project`
+
+Name of a DITA-OT [project file](https://www.dita-ot.org/3.6/topics/using-project-files.html) to run as an alternative to building using a
+transtype. This will only run if `transtype` is not set.
 
 ### `build`
 
-Explicit command-line input or a bash script to run the DITA-OT build.  Alternative to `transtype` and `properties`.
+Explicit command-line input or path to a bash script to run the DITA-OT build
+GitHub Action. This script will only run if  `transtype`  and `project` are
+left unset.
 
 ### `dita-ot-version`
 
@@ -79,6 +86,19 @@ Downloads an explicit version of DITA-OT to use rather than using the default. D
       input: document.ditamap
       transtype: html5
       output-path: out
+```
+
+### Build using a project file
+
+```yaml
+- name: Build HTML5 using DITA-OT
+  uses: dita-ot/dita-ot-action@master
+  with:
+      plugins : |
+        fox.jason.extend.css
+        org.doctales.xmltask
+        fox.jason.prismjs
+      project: html.xml
 ```
 
 ### Build using command line statements only
