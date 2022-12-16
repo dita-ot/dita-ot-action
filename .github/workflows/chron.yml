@@ -1,0 +1,38 @@
+name: "Tag Release"
+on:
+  schedule:
+  - cron: "0 8 * * 1"
+  workflow_dispatch:
+    inputs:
+      vers:
+        description: 'Semantic Version Number'
+        required: false
+jobs:
+  tag_release:
+    runs-on: ubuntu-latest
+    name: Create Revision
+    steps:
+    - uses: actions/checkout@master
+      with:
+        persist-credentials: false
+        fetch-depth: 0
+    - name: Read release information
+      run: |
+        if [ -z ${{ github.event.inputs.vers }} ]
+        then
+          VERS=$(curl -s  https://api.github.com/repos/dita-ot/dita-ot/releases/latest | jq -r '.tag_name')
+        else
+          VERS=${{ github.event.inputs.vers }}
+        fi
+        sed -E  's/([0-9]{1,}.){1,}([0-9]){1,}/'"${VERS}"'/g' Dockerfile  > Dockerfile.tmp && mv Dockerfile.tmp Dockerfile
+        git config --global user.email "action@github.com"
+        git config --global user.name "GitHub Action"
+        git add -A .
+        git commit -m 'Docker version to '"${VERS}"'' -a
+        git tag "${VERS}" -a -m 'Release '"${VERS}"''
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      continue-on-error: true
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: ${{ github.ref }}
