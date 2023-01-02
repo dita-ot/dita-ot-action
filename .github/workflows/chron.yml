@@ -28,8 +28,8 @@ jobs:
         git config --global user.email "action@github.com"
         git config --global user.name "GitHub Action"
         git add -A .
-        git commit -m 'Docker version to '"${VERS}"'' -a
-        git tag "${VERS}" -a -m 'Release '"${VERS}"''
+        git commit -m 'Docker version to '"${VERS}"'' -a || true
+        git tag "${VERS}" -a -m 'Release '"${VERS}"'' || true
     - name: Push changes
       uses: ad-m/github-push-action@master
       continue-on-error: true
