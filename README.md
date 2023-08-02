@@ -46,14 +46,19 @@ Downloads an explicit version of DITA-OT to use rather than using the default. D
 
 ## Examples
 
-### Install using `plugins`
+### Install
+
+#### Install using `plugins`
+
+Installation of plugins found within the [DITA-OT registry](https://github.com/dita-ot/registry)
+can be referred to by name. A plugin also can be referrred to using a full path if necessary.
 
 ```yaml
 - name: Build HTML5 using DITA-OT
   uses: dita-ot/dita-ot-action@master
   with:
       plugins : |
-        fox.jason.extend.css
+        https://github.com/jason-fox/fox.jason.extend.css/archive/master.zip
         org.doctales.xmltask
         fox.jason.prismjs
       input: document.ditamap
@@ -61,14 +66,16 @@ Downloads an explicit version of DITA-OT to use rather than using the default. D
       output-path: out
 ```
 
-### Install using command line statements
+#### Install using command line statements
+
+Plugins can also be installed using the `dita` command.
 
 ```yaml
 - name: Build HTML5 using DITA-OT
   uses: dita-ot/dita-ot-action@master
   with:
       install : |
-        dita install fox.jason.extend.css
+        dita install https://github.com/jason-fox/fox.jason.extend.css/archive/master.zip
         dita install org.doctales.xmltask
         dita install fox.jason.prismjs
       input: document.ditamap
@@ -76,7 +83,33 @@ Downloads an explicit version of DITA-OT to use rather than using the default. D
       output-path: out
 ```
 
-### Install using a bash script
+#### Install with additional prerequisites
+
+The following steps install [Node.js](https://nodejs.org/en) and switch the [locale](https://askubuntu.com/questions/193251/how-to-set-all-locale-settings-in-ubuntu) 
+to **German**. By default, out of the box, the plugin only supports the **English** locale, 
+
+```yaml
+- name: Build HTML5 + Bootstrap
+  uses: dita-ot/dita-ot-action@master
+  with:
+       install: |
+            apt-get update -q
+            export DEBIAN_FRONTEND=noninteractive
+            apt-get install -qy --no-install-recommends nodejs
+            nodejs -v
+            locale-gen de_DE.UTF-8 
+            LANG="de_DE.UTF-8"  
+            LANGUAGE="de_DE:de"  
+            LC_ALL="de_DE.UTF-8"
+       plugins: |
+            fox.jason.extend.css
+            dita-bootstrap
+            dita-bootstrap.lunr           
+```
+
+#### Install using a bash script
+
+For complex prerequisites, an additional bash script can be added into the root of the repository
 
 ```yaml
 - name: Build HTML5 using DITA-OT
@@ -88,7 +121,11 @@ Downloads an explicit version of DITA-OT to use rather than using the default. D
       output-path: out
 ```
 
-### Build using a project file
+### Build
+
+#### Build using a project file
+
+The action supports the use of the [DITA-OT Project file](https://www.dita-ot.org/dev/topics/using-project-files.html)
 
 ```yaml
 - name: Build HTML5 using DITA-OT
@@ -101,7 +138,9 @@ Downloads an explicit version of DITA-OT to use rather than using the default. D
       project: html.xml
 ```
 
-### Build using command line statements only
+#### Build using command line statements only
+
+The action supports the use of the [`dita` command](https://www.dita-ot.org/dev/topics/build-using-dita-command.html)
 
 ```yaml
 - name: Build PDF using DITA-OT commands
@@ -115,7 +154,7 @@ Downloads an explicit version of DITA-OT to use rather than using the default. D
         dita -i document.ditamap -o out  -f pdf --filter=filter1.ditaval
 ```
 
-## Example usage fixed to an explicit DITA-OT version and build properties
+#### Example usage fixed to an explicit DITA-OT version and build properties
 
 ```yaml
 - name: Build PDF using DITA-OT 3.5.4
@@ -132,7 +171,7 @@ Downloads an explicit version of DITA-OT to use rather than using the default. D
       output-path: out
 ```
 
-## Post-processing
+### Post-processing
 
 The artifacts can then be uploaded from your workflow as shown:
 
