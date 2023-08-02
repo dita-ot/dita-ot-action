@@ -59,8 +59,8 @@ can be referred to by name. A plugin also can be referrred to using a full path 
   with:
       plugins : |
         https://github.com/jason-fox/fox.jason.extend.css/archive/master.zip
-        org.doctales.xmltask
-        fox.jason.prismjs
+        org.jung.xmltask
+        com.oxygenxml.json.dita
       input: document.ditamap
       transtype: html5
       output-path: out
@@ -76,8 +76,8 @@ Plugins can also be installed using the `dita` command.
   with:
       install : |
         dita install https://github.com/jason-fox/fox.jason.extend.css/archive/master.zip
-        dita install org.doctales.xmltask
-        dita install fox.jason.prismjs
+        dita install org.jung.xmltask
+        dita install com.oxygenxml.json.dita
       input: document.ditamap
       transtype: html5
       output-path: out
@@ -103,8 +103,8 @@ to **German**. By default, out of the box, the plugin only supports the **Englis
             LC_ALL="de_DE.UTF-8"
        plugins: |
             fox.jason.extend.css
-            dita-bootstrap
-            dita-bootstrap.lunr           
+            net.infotexture.dita-bootstrap
+            net.infotexture.dita-bootstrap.lunr           
 ```
 
 #### Install using a bash script
@@ -133,7 +133,7 @@ The action supports the use of the [DITA-OT Project file](https://www.dita-ot.or
   with:
       plugins : |
         fox.jason.extend.css
-        org.doctales.xmltask
+        org.jung.xmltask
         fox.jason.prismjs
       project: html.xml
 ```
@@ -148,7 +148,7 @@ The action supports the use of the [`dita` command](https://www.dita-ot.org/4.1/
   with:
       install : |
         dita install fox.jason.extend.css
-        dita install org.doctales.xmltask
+        dita install org.jung.xmltask
         dita install fox.jason.prismjs
       build: |
         dita -i document.ditamap -o out  -f pdf --filter=filter1.ditaval
