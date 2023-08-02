@@ -6,7 +6,7 @@ This GitHub Action installs a version of [DITA Open toolkit](https://www.dita-ot
 
 ### `transtype`
 
-Name of the [DITA-OT transform](https://www.dita-ot.org/3.6/topics/output-formats.html) to run. One of `build` , `transtype`  or `project` is required.
+Name of the [DITA-OT transform](https://www.dita-ot.org/4.1/topics/output-formats.html) to run. One of `build` , `transtype`  or `project` is required.
 
 ### `input`
 
@@ -18,19 +18,19 @@ Location for the DITA-OT build outputs. Defaults to `out` if not supplied.
 
 ### `properties`
 
-A string representing any [additional parameters](https://www.dita-ot.org/3.6/parameters/parameters_intro.html) to pass into the input.
+A string representing any [additional parameters](https://www.dita-ot.org/4.1/parameters/parameters_intro.html) to pass into the input.
 
 ### `plugins`
 
-Comma-separated list of additional [DITA-OT plugins](https://www.dita-ot.org/3.6/topics/adding-plugins.html) to install.
+Comma-separated list of additional [DITA-OT plugins](https://www.dita-ot.org/4.1/topics/adding-plugins.html) to install.
 
 ### `install`
 
-The name of a bash script to run to [install plugins](https://www.dita-ot.org/3.6/topics/plugins-installing.html) or any other dependencies prior to running the build. Script-based alternative to `plugins`.
+The name of a bash script to run to [install plugins](https://www.dita-ot.org/4.1/topics/plugins-installing.html) or any other dependencies prior to running the build. Script-based alternative to `plugins`.
 
 ### `project`
 
-Name of a DITA-OT [project file](https://www.dita-ot.org/3.6/topics/using-project-files.html) to run as an alternative to building using a
+Name of a DITA-OT [project file](https://www.dita-ot.org/4.1/topics/using-project-files.html) to run as an alternative to building using a
 transtype. This will only run if `transtype` is not set.
 
 ### `build`
@@ -41,7 +41,7 @@ left unset.
 
 ### `dita-ot-version`
 
-Downloads an explicit version of DITA-OT to use rather than using the default. Defaults to `3.6`.
+Downloads an explicit version of DITA-OT to use rather than using the default. Defaults to `4.1`.
 
 
 ## Examples
@@ -125,7 +125,7 @@ For complex prerequisites, an additional bash script can be added into the root 
 
 #### Build using a project file
 
-The action supports the use of the [DITA-OT Project file](https://www.dita-ot.org/dev/topics/using-project-files.html)
+The action supports the use of the [DITA-OT Project file](https://www.dita-ot.org/4.1/topics/using-project-files.html)
 
 ```yaml
 - name: Build HTML5 using DITA-OT
@@ -140,7 +140,7 @@ The action supports the use of the [DITA-OT Project file](https://www.dita-ot.or
 
 #### Build using command line statements only
 
-The action supports the use of the [`dita` command](https://www.dita-ot.org/dev/topics/build-using-dita-command.html)
+The action supports the use of the [`dita` command](https://www.dita-ot.org/4.1/topics/build-using-dita-command.html)
 
 ```yaml
 - name: Build PDF using DITA-OT commands
