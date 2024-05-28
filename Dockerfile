@@ -3,7 +3,7 @@
 # This file is part of the DITA-OT Build GitHub Action project.
 # See the accompanying LICENSE file for applicable licenses.
 
-FROM ghcr.io/dita-ot/dita-ot:4.2.2 AS DITA_OT
+FROM ghcr.io/dita-ot/dita-ot:4.2.3 AS DITA_OT
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
