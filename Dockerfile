@@ -3,7 +3,7 @@
 # This file is part of the DITA-OT Build GitHub Action project.
 # See the accompanying LICENSE file for applicable licenses.
 
-FROM --platform=linux/amd64 ghcr.io/dita-ot/dita-ot:4.3.1 AS DITA_OT
+FROM --platform=$BUILDPLATFORM ghcr.io/dita-ot/dita-ot:4.3.1 AS DITA_OT
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
