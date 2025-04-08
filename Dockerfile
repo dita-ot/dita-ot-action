@@ -4,6 +4,9 @@
 # See the accompanying LICENSE file for applicable licenses.
 
 FROM --platform=$BUILDPLATFORM ghcr.io/dita-ot/dita-ot:4.3.1 AS DITA_OT
+ARG TARGETPLATFORM
+ARG BUILDPLATFORM
+RUN echo "I am running on $BUILDPLATFORM, building for $TARGETPLATFORM"
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
