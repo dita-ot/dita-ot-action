@@ -3,7 +3,7 @@
 # This file is part of the DITA-OT Build GitHub Action project.
 # See the accompanying LICENSE file for applicable licenses.
 
-FROM --platform=$BUILDPLATFORM ghcr.io/dita-ot/dita-ot:4.3.1 AS DITA_OT
+FROM --platform=$BUILDPLATFORM ghcr.io/dita-ot/dita-ot:4.3.3 AS DITA_OT
 ARG TARGETPLATFORM
 ARG BUILDPLATFORM
 RUN echo "I am running on $BUILDPLATFORM, building for $TARGETPLATFORM"
