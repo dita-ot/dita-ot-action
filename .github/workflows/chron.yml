@@ -24,7 +24,7 @@ jobs:
         else
           VERS=${{ github.event.inputs.vers }}
         fi
-        sed -E  's/([0-9]{1,}.){1,}([0-9]){1,}/'"${VERS}"'/g' Dockerfile  > Dockerfile.tmp && mv Dockerfile.tmp Dockerfile
+        sed -E  's/dita\-ot:([0-9]{1,}.){1,}([0-9]){1,}/'dita\-ot:"${VERS}"'/g' Dockerfile  > Dockerfile.tmp && mv Dockerfile.tmp Dockerfile
         git config --global user.email "action@github.com"
         git config --global user.name "GitHub Action"
         git add -A .
