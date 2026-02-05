@@ -12,7 +12,7 @@ ENV PATH="${JAVA_HOME}/bin:${PATH}"
 
 ENV DITA_HOME=/opt/app
 ENV PATH=${PATH}:${DITA_HOME}/bin
-COPY --from=ghcr.io/dita-ot/dita-ot:4.3.5 $DITA_HOME $DITA_HOME
+COPY --from=ghcr.io/dita-ot/dita-ot:4.4 $DITA_HOME $DITA_HOME
 
 USER root
 WORKDIR /
